@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowDesk</title>
+    <link rel="stylesheet" href="./../styles.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./../assets/Onlylogo.png">
+</head>
+
+
+<body>
+    
+    <header class="main-header">
+        <div class="logo-container">
+            <a href="dashboard.html"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="dashboard.html">Tableau de bord</a></li>
+                <li><a href="project.html" class="active">Mes Projets</a></li>
+                <li><a href="tickets.html">Tickets</a></li>
+                <li><a href="bills.html">Facturation</a></li>
+                <li><a href="documents.html">Documents</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-profile">
+            <span>user</span>
+            <div class="avatar">U</div>
+        </div>
+    </header>
+
+    <div class="content_create">
+        
+        <div class="form-card">
+            <div class="form-header">
+                <h1>Nouveau Projet</h1>
+                <p>Définissez le cadre, le client et l'équipe pour ce nouveau projet.</p>
+            </div>
+
+            <form action="project.html">
+                
+                <div class="form-group-project">
+                    <label for="nom_projet">Nom du projet <span class="text-required">*</span></label>
+                    <input type="text" id="nom_projet" name="nom_projet" class="form-control" placeholder="Ex: Refonte Site E-Commerce" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group-project">
+                        <label for="client">Client rattaché <span class="text-required">*</span></label>
+                        <select id="client" name="client" class="form-control" required>
+                            <option value="" disabled selected>-- Sélectionner --</option>
+                            <option value="greenmarket">GreenMarket SAS</option>
+                            <option value="dupond">Groupe Dupond</option>
+                            <option value="fastdelivery">FastDelivery</option>
+                            <option value="new">+ Nouveau client...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group-project">
+                        <label for="budget">Enveloppe d'heures (Optionnel)</label>
+                        <input type="number" id="budget" name="budget" class="form-control" placeholder="Ex: 150">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group-project">
+                        <label>Date de début</label>
+                        <input type="date" name="start_date" class="form-control">
+                    </div>
+
+                    <div class="form-group-project">
+                        <label for="end_date">Date de fin prévisionnelle</label>
+                        <input type="date" id="end_date" name="end_date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group-project">
+                    <label for="description">Description et contexte</label>
+                    <textarea id="description" name="description" class="form-control" placeholder="Objectifs du projet, contraintes techniques..."></textarea>
+                </div>
+
+                <div class="form-group-project">
+                    <label>Assigner l'équipe initiale</label>
+                    <div class="collabs-grid">
+                        
+                        <label style="display: flex;" class="collab-option">
+                            <input type="checkbox" name="collabs" value="jd">
+                            <span class="avatar">JD</span>
+                            <span>John Doe (Dev)</span>
+                        </label>
+
+                        <label style="display: flex;" class="collab-option">
+                            <input type="checkbox" name="collabs" value="al">
+                            <span class="avatar av-yellow">AL</span>
+                            <span>Alice L. (Design)</span>
+                        </label>
+
+                        <label style="display: flex;" class="collab-option">
+                            <input type="checkbox" name="collabs"  value="mr">
+                            <span class="avatar av-pink">MR</span>
+                            <span>Marc R. (Back)</span>
+                        </label>
+
+                        <label style="display: flex;" class="collab-option">
+                            <input type="checkbox" name="collabs" value="ss">
+                            <span class="avatar av-blue">SS</span>
+                            <span>Sarah S. (Chef)</span>
+                        </label>
+
+                    </div>
+                    <p class="help-text">Cochez les personnes qui travailleront sur ce projet.</p>
+                </div>
+
+                <div class="form-actions">
+                    <a href="project.html" class="btn-cancel">Annuler</a>
+                    <button type="submit" class="btn-submit">Créer le projet</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

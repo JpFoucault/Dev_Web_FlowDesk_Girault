@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowDesk</title>
+    <link rel="stylesheet" href="./../styles.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./../assets/Onlylogo.png">
+</head>
+
+
+<body>
+    
+    <header class="main-header">
+        <div class="logo-container">
+            <a href="dashboard.html"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="dashboard.html">Tableau de bord</a></li>
+                <li><a href="project.html">Mes Projets</a></li>
+                <li><a href="tickets.html">Tickets</a></li>
+                <li><a href="bills.html">Facturation</a></li>
+                <li><a href="documents.html" class="active">Documents</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-profile">
+            <span>user</span>
+            <div class="avatar">U</div>
+        </div>
+    </header>
+
+    <div class="content">
+        
+        <div class="page-actions">
+            <h1>Documents & Fichiers</h1>
+            <a href="new_documents.html" class="btn-create">Importer un fichier</a>
+        </div>
+
+        <div class="table-card">
+            <table class="ticket-table"> <thead>
+                    <tr>
+                        <th>Nom du fichier</th>
+                        <th>Projet / Contexte</th>
+                        <th>Date d'ajout</th>
+                        <th>Propriétaire</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>
+                            <div class="file-name-cell">
+                                <div class="file-icon icon-pdf">PDF</div>
+                                <div class="file-details">
+                                    <span class="file-name">Cahier_des_charges_v2.pdf</span>
+                                    <span class="file-size">2.4 Mo</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="company-badge">Site E-Commerce Bio</span></td>
+                        <td>30 Jan 2026</td>
+                        <td>Sophie Martin</td>
+                        <td class="text-right">
+                            <a href="#" class="btn-details">Télécharger</a>
+                            <a href="#" class="btn-icon" title="Supprimer">&times;</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="file-name-cell">
+                                <div class="file-icon icon-img">JPG</div>
+                                <div class="file-details">
+                                    <span class="file-name">Maquette_Homepage_Dark.jpg</span>
+                                    <span class="file-size">4.8 Mo</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="company-badge">App Mobile Livraison</span></td>
+                        <td>28 Jan 2026</td>
+                        <td>Alice L.</td>
+                        <td class="text-right">
+                            <a href="#" class="btn-details">Télécharger</a>
+                            <a href="#" class="btn-icon" title="Supprimer">&times;</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="file-name-cell">
+                                <div class="file-icon icon-doc">DOC</div>
+                                <div class="file-details">
+                                    <span class="file-name">Contrat_Maintenance_2026.docx</span>
+                                    <span class="file-size">500 Ko</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="company-badge">Administratif</span></td>
+                        <td>15 Jan 2026</td>
+                        <td>Admin</td>
+                        <td class="text-right">
+                            <a href="#" class="btn-details">Télécharger</a>
+                            <a href="#" class="btn-icon" title="Supprimer">&times;</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="file-name-cell">
+                                <div class="file-icon icon-xls">XLS</div>
+                                <div class="file-details">
+                                    <span class="file-name">Export_Clients_Janvier.xlsx</span>
+                                    <span class="file-size">1.2 Mo</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="company-badge">CRM Interne</span></td>
+                        <td>10 Jan 2026</td>
+                        <td>Marc R.</td>
+                        <td class="text-right">
+                            <a href="#" class="btn-details">Télécharger</a>
+                            <a href="#" class="btn-icon" title="Supprimer">&times;</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>
