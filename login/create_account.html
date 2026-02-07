@@ -41,26 +41,30 @@
             </div>
         </div>
 
-        <form>
+        <form id="create_account_form" action="" method="post">
 
             <div class="form-group">
                 <label>Prénom<span class="text-required">*</span></label>
-                <input type="text" name="prenom" required>
+                <input id="account_first_name" type="text" name="prenom">
+                <div id="client_first_name_error" class="error-text titanic">Sélectionner un client rattaché.</div>
             </div>
 
             <div class="form-group">
                 <label>Nom<span class="text-required">*</span></label>
-                <input type="text" name="nom" required>
+                <input id="account_family_name" type="text" name="nom">
+                <div id="client_family_name_error" class="error-text titanic">Sélectionner un client rattaché.</div>
             </div>
 
             <div class="form-group">
                 <label>Email professionnel<span class="text-required">*</span></label>
-                <input type="email" name="email" required>
+                <input id="account_email" type="email" name="email">
+                <div id="client_email_error" class="error-text titanic">Sélectionner un client rattaché.</div>
             </div>
 
             <div class="form-group">
                 <label>Mot de passe provisoire<span class="text-required">*</span></label>
-                <input type="password" name="password" required>
+                <input type="password" name="password">
+                <div id="client_name_error" class="error-text titanic">Sélectionner un client rattaché.</div>
             </div>
 
             <div class="form-group">
@@ -69,6 +73,7 @@
                     <option>Collaborateur (Interne)</option>
                     <option>Client (Externe)</option>
                 </select>
+                <div id="client_name_error" class="error-text titanic">Sélectionner un client rattaché.</div>
             </div>
 
             <div class="form-group">
@@ -78,10 +83,12 @@
                     <option>Entreprise A</option>
                     <option>Entreprise B</option>
                 </select>
+                <div id="client_name_error" class="error-text titanic">Sélectionner un client rattaché.</div>
             </div>
 
-            <a href="./../user/dashboard.html" class="btn-login">Créer l'utilisateur</a>
+            <button type="submit" class="btn-login">Créer l'utilisateur</button>
         </form>
     </div>
+    <script src="./../javascript/create_account.js"></script>
 </body>
 </html>

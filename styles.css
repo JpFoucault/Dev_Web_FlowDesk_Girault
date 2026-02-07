@@ -1122,7 +1122,7 @@ input:checked + .slider:before {
     }
 
     .content, .content_create, .content_contact, .content_create_ticket {
-        margin-left: 0 !important;
+        margin-left: 0;
         padding: 20px 15px; 
         width: 100%;
         max-width: 100%;
@@ -1191,4 +1191,17 @@ input:checked + .slider:before {
         width: 100%;
         text-align: center;
     }
-    }
+}
+
+.titanic {
+    display: none;
+}
+
+.error-text {
+    font-size: 0.82rem;
+    color: #b23b2c;
+    background: #ffe7df;
+    border: 1px solid #f2c2b8;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
