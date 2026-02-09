@@ -52,10 +52,44 @@ function check_account_email()
     }
 }
 
+function verifierMotDePasse(mdp) {
+    const regex = /^(?=.*[A-Z])(?=.*\d).{7,20}$/;
+
+    return regex.test(mdp);
+}
+
 function check_account_password()
 {
-    
+    const account_password = document.querySelector('#account_password');
+    console.log(account_password.value);
+    const titre_error = document.querySelector('#password_error');
+
+    if(!verifierMotDePasse(account_password.value))
+    {
+        titre_error.classList.remove('titanic');
+        return 1;
+    } else{
+        titre_error.classList.add('titanic');
+        return 0;
+    }  
 }
+
+function check_firm()
+{
+    const firm_name = document.querySelector('#account_firm');
+    console.log(firm_name.value);
+    const firm_error = document.querySelector('#firm_error');
+
+    if (firm_name.value == "-- Choisir une entreprise --")
+    {
+        firm_error.classList.remove('titanic');
+        return 1;
+    } else {
+        firm_error.classList.add('titanic');
+        return 0;
+    }
+} 
+
 
 const f = document.querySelector('#create_account_form');
 
@@ -67,6 +101,8 @@ f.addEventListener("submit", function(event) {
     nb_errors += check_account_first_name();
     nb_errors += check_account_family_name();
     nb_errors += check_account_email();
+    nb_errors += check_account_password();
+    nb_errors += check_firm();
 
     console.log("nb errors :" + nb_errors);
 });

@@ -39,40 +39,45 @@
                 <p>Créez une fiche pour un client, un collaborateur ou un partenaire.</p>
             </div>
 
-            <form action="contacts.html">
+            <form id="new_contact_form" action="contacts.html">
                 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="prenom">Prénom <span class="text-required">*</span></label>
-                        <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Ex: Jean" required>
+                        <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Ex: Jean">
+                        <div id="prenom_error" class="error-text titanic">Veuillez entrer un prénom.</div>
                     </div>
 
                     <div class="form-group">
                         <label for="nom">Nom <span class="text-required">*</span></label>
-                        <input type="text" id="nom" name="nom" class="form-control" placeholder="Ex: Dupont" required>
+                        <input type="text" id="nom" name="nom" class="form-control" placeholder="Ex: Dupont">
+                        <div id="nom_error" class="error-text titanic">Veuillez entrer un nom.</div>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="poste">Poste / Fonction <span class="text-required">*</span></label>
-                        <input type="text" id="poste" name="poste" class="form-control" placeholder="Ex: Chef de projet, CTO..." required>
+                        <input type="text" id="poste" name="poste" class="form-control" placeholder="Ex: Chef de projet, CTO...">
+                        <div id="poste_error" class="error-text titanic">Veuillez indiquer le poste.</div>
                     </div>
 
                     <div class="form-group">
                         <label for="entreprise">Entreprise rattachée <span class="text-required">*</span></label>
-                        <select id="entreprise" name="entreprise" class="form-control" required>
+                        <select id="entreprise" name="entreprise" class="form-control">
                             <option value="" disabled selected>-- Choisir une structure --</option>
                             <option value="greenmarket">GreenMarket SAS</option>
                             <option value="dupond">Groupe Dupond</option>
                         </select>
+                        <div id="entreprise_error" class="error-text titanic">Veuillez sélectionner une entreprise.</div>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="email">Adresse Email <span class="text-required">*</span></label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="jean.dupont@exemple.com" required>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="jean.dupont@exemple.com">
+                        <div id="email_error" class="error-text titanic">Veuillez entrer un email valide.</div>
                     </div>
 
                     <div class="form-group">
@@ -96,5 +101,6 @@
 
     </div>
 
+    <script src="./../javascript/new_contacts.js"></script>
 </body>
 </html>

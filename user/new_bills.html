@@ -40,34 +40,38 @@
                 <p>Remplissez les informations financières et joignez le document PDF.</p>
             </div>
 
-            <form action="bills.html">
+            <form id="new_bill_form" action="bills.html">
                 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="reference">Référence Facture <span class="text-required">*</span></label>
-                        <input type="text" id="reference" name="reference" class="form-control" placeholder="Ex: FAC-2024-042" required>
+                        <input type="text" id="reference" name="reference" class="form-control" placeholder="Ex: FAC-2024-042">
+                        <div id="reference_error" class="error-text titanic">Veuillez entrer une référence de facture.</div>
                     </div>
 
                     <div class="form-group">
                         <label for="client">Client facturé <span class="text-required">*</span></label>
-                        <select id="client" name="client" class="form-control" required>
+                        <select id="client" name="client" class="form-control">
                             <option value="" disabled selected>-- Choisir un client --</option>
                             <option value="greenmarket">GreenMarket SAS</option>
                             <option value="dupond">Groupe Dupond</option>
                             <option value="fastdelivery">FastDelivery</option>
                         </select>
+                        <div id="client_error" class="error-text titanic">Veuillez sélectionner un client.</div>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="date_facture">Date d'émission <span class="text-required">*</span></label>
-                        <input type="date" id="date_facture" name="date_facture" class="form-control" required>
+                        <input type="date" id="date_facture" name="date_facture" class="form-control">
+                        <div id="date_error" class="error-text titanic">Veuillez choisir une date.</div>
                     </div>
 
                     <div class="form-group">
                         <label for="montant">Montant HT (€) <span class="text-required">*</span></label>
-                        <input type="number" id="montant" name="montant" class="form-control" placeholder="0.00" step="0.01" required>
+                        <input type="number" id="montant" name="montant" class="form-control" placeholder="0.00" step="0.01">
+                        <div id="montant_error" class="error-text titanic">Veuillez entrer un montant valide.</div>
                     </div>
                 </div>
 
@@ -85,12 +89,13 @@
                     <label>Document original (PDF) <span class="text-required">*</span></label>
                     
                     <div class="file-upload-zone">
-                        <input type="file" id="facture_pdf" name="facture_pdf" class="file-input" accept="application/pdf" required>
+                        <input type="file" id="facture_pdf" name="facture_pdf" class="file-input" accept="application/pdf">
                         
                         <span class="upload-icon">📄</span>
                         <span class="upload-text">Cliquez pour déposer votre facture ou glissez le fichier ici</span>
                         <span class="upload-hint">PDF uniquement</span>
                     </div>
+                    <div id="file_error" class="error-text titanic" style="margin-top: 10px;">Veuillez joindre le fichier PDF de la facture.</div>
                 </div>
 
                 <div class="form-actions">
@@ -103,5 +108,6 @@
 
     </div>
 
+    <script src="./../javascript/new_bills.js"></script>
 </body>
 </html>

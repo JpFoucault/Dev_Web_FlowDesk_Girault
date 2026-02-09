@@ -1205,3 +1205,7 @@ input:checked + .slider:before {
     padding: 6px 10px;
     border-radius: 8px;
 }
+
+.required_password{
+    font-size: 10px;
+}

@@ -42,34 +42,37 @@
                 <p>Ajoutez des spécifications, contrats ou maquettes à vos projets.</p>
             </div>
 
-            <form action="documents.html">
+            <form id="new_document_form" action="documents.html">
                 
                 <div class="form-group">
                     <label>Fichier à importer <span class="text-required">*</span></label>
                     <div class="file-upload-zone">
-                        <input type="file" name="document" class="file-input-hidden" required>
+                        <input type="file" id="document_file" name="document" class="file-input-hidden">
                         <span class="upload-icon">☁️</span>
                         <span class="upload-title">Cliquez ou glissez votre fichier ici</span>
                         <span class="upload-subtitle">PDF, Word, Excel, Images (Max 10Mo)</span>
                     </div>
+                    <div id="file_error" class="error-text titanic" style="margin-top: 10px;">Veuillez sélectionner un fichier à importer.</div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="doc_name">Nom du document <span class="text-required">*</span></label>
-                        <input type="text" id="doc_name" name="doc_name" class="form-control" placeholder="Ex: Cahier des charges v2" required>
+                        <input type="text" id="doc_name" name="doc_name" class="form-control" placeholder="Ex: Cahier des charges v2">
+                        <div id="name_error" class="error-text titanic">Veuillez donner un nom au document.</div>
                     </div>
 
                     <div class="form-group">
                         <label for="category">Type de fichier <span class="text-required">*</span></label>
-                        <select id="category" name="category" class="form-control" required>
-                            <option value="" disabled selected>Veuillez choisir un site</option>
+                        <select id="category" name="category" class="form-control">
+                            <option value="" disabled selected>Veuillez choisir un type</option>
                             <option value="contract">Contrat / Administratif</option>
                             <option value="spec">Spécifications techniques</option>
                             <option value="design">Maquette / Design</option>
                             <option value="report">Rapport / CR</option>
                             <option value="other">Autre</option>
                         </select>
+                        <div id="category_error" class="error-text titanic">Veuillez sélectionner un type de fichier.</div>
                     </div>
                 </div>
 
@@ -99,5 +102,6 @@
 
     </div>
 
+    <script src="./../javascript/new_documents.js"></script>
 </body>
 </html>
