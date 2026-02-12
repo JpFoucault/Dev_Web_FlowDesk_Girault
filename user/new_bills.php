@@ -1,3 +1,25 @@
+<?php
+require_once './../index.php'; 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nouvelleFacture = new Facture($_POST);
+
+    if (isset($_FILES['bill_file']) && $_FILES['bill_file']['error'] === 0) {
+        $nomFichier = $_FILES['bill_file']['name'];
+        $destination = "./../uploads/factures/" . basename($nomFichier);
+        
+        if (!is_dir("./../uploads/factures/")) {
+            mkdir("./../uploads/factures/", 0777, true);
+        }
+
+        move_uploaded_file($_FILES['bill_file']['tmp_name'], $destination);
+    }
+
+    header('Location: bills.html?success=1');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +62,7 @@
                 <p>Remplissez les informations financières et joignez le document PDF.</p>
             </div>
 
-            <form id="new_bill_form" action="bills.html">
+            <form id="new_bill_form" action="bills.html" method="POST">
                 
                 <div class="form-row">
                     <div class="form-group">

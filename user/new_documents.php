@@ -1,3 +1,25 @@
+<?php
+require_once './../index.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nouveauDoc = new Document($_POST);
+
+    if (isset($_FILES['doc_file']) && $_FILES['doc_file']['error'] === 0) {
+        $nomFichier = $_FILES['doc_file']['name'];
+        $destination = "./../uploads/documents/" . basename($nomFichier);
+
+        if (!is_dir("./../uploads/documents/")) {
+            mkdir("./../uploads/documents/", 0777, true);
+        }
+
+        move_uploaded_file($_FILES['doc_file']['tmp_name'], $destination);
+    }
+
+    header('Location: documents.html?success=1');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,3 +1,13 @@
+<?php
+require_once './../index.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nouveauProjet = new Projet($_POST);
+    header('Location: project.html');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +25,7 @@
         <div class="logo-container">
             <a href="dashboard.html"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
         </div>
+
         <nav class="main-nav">
             <ul>
                 <li><a href="dashboard.html">Tableau de bord</a></li>
@@ -37,29 +48,28 @@
         
         <div class="form-card">
             <div class="form-header">
-                <h1>Modifier le projet</h1>
-                <p>Re-définissez le cadre, le client et l'équipe pour ce projet.</p>
+                <h1>Nouveau Projet</h1>
+                <p>Définissez le cadre, le client et l'équipe pour ce nouveau projet.</p>
             </div>
 
-            <form id="modif_project_form" action="project.html">
+            <form id="submitform" action="project.html" method="POST">
                 
                 <div class="form-group-project">
                     <label for="nom_projet">Nom du projet <span class="text-required">*</span></label>
                     <input type="text" id="nom_projet" name="nom_projet" class="form-control" placeholder="Ex: Refonte Site E-Commerce">
-                    <div id="project_name_error" class="error-text titanic">Veuillez entrer un nom de projet valide.</div>
+                    <div id="project_name_error" class="error-text titanic">Le nom du projet est obligatoire.</div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group-project">
                         <label for="client">Client rattaché <span class="text-required">*</span></label>
-                        <select id="client" name="client" class="form-control">
-                            <option value="" disabled selected>-- Sélectionner --</option>
-                            <option value="greenmarket">GreenMarket SAS</option>
-                            <option value="dupond">Groupe Dupond</option>
-                            <option value="fastdelivery">FastDelivery</option>
-                            <option value="new">+ Nouveau client...</option>
+                        <select id="client" name="client" class="form-control" >
+                            <option disabled selected>-- Sélectionner --</option>
+                            <option>GreenMarket SAS</option>
+                            <option>Groupe Dupond</option>
+                            <option>FastDelivery</option>
                         </select>
-                        <div id="client_error" class="error-text titanic">Veuillez sélectionner un client rattaché.</div>
+                        <div id="client_name_error" class="error-text titanic">Sélectionner un client rattaché.</div>
                     </div>
 
                     <div class="form-group-project">
@@ -86,8 +96,8 @@
                 </div>
 
                 <div class="form-group-project">
-                    <label>Assigner l'équipe</label>
-                    <div class="collabs-grid">
+                    <label>Assigner l'équipe initiale</label>
+                    <div class="collabs-grid" >
                         
                         <label style="display: flex;" class="collab-option">
                             <input type="checkbox" name="collabs" value="jd">
@@ -119,17 +129,14 @@
 
                 <div class="form-actions">
                     <a href="project.html" class="btn-cancel">Annuler</a>
-
-                    <button type="button" class="btn-supr">Supprimer le projet</button>
-
-                    <button type="submit" class="btn-submit">Enregistrer les modifications</button>
+                    <button type="submit" class="btn-submit">Créer le projet</button>
                 </div>
 
             </form>
         </div>
 
     </div>
-    
-    <script src="./../javascript/modif_project.js"></script>
+    <script src="./../javascript/new_project.js"></script>
+
 </body>
 </html>

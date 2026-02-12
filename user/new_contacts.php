@@ -1,3 +1,15 @@
+<?php
+require_once './../index.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nouveauContact = new Contact($_POST);
+    header('Location: contacts.html?success=1');
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="fr">
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +51,7 @@
                 <p>Créez une fiche pour un client, un collaborateur ou un partenaire.</p>
             </div>
 
-            <form id="new_contact_form" action="contacts.html">
+            <form id="new_contact_form" action="contacts.html" method="POST">
                 
                 <div class="form-row">
                     <div class="form-group">

@@ -1,3 +1,20 @@
+<?php
+
+require_once './../index.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    $nouveauTicket = new Ticket($_POST);
+
+    if ($nouveauTicket->isValid()) {
+        header('Location: tickets.html'); 
+        exit();
+    } else {
+        echo "Erreur : Certains champs obligatoires sont vides.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +25,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./../assets/Onlylogo.png">
 </head>
 
+
 <body>
     
     <header class="main-header">
         <div class="logo-container">
-            <a href="dashboard.html"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
+            <a href="dashboard.php"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
         </div>
 
         <nav class="main-nav">
@@ -37,15 +55,15 @@
         
         <div class="form-card">
             <div class="form-header">
-                <h1>Modifier le ticket</h1>
-                <p>Mettez à jour le statut, la priorité ou la description de la demande.</p>
+                <h1>Créer un nouveau ticket</h1>
+                <p>Veuillez remplir les informations ci-dessous pour ouvrir une demande.</p>
             </div>
 
-            <form id="modif_ticket_form" action="tickets.html">
+            <form id="create_ticket_form" method="POST" action="create_tickets.php">
                 
                 <div class="form-group">
                     <label for="titre">Sujet de la demande <span class="text-required">*</span></label>
-                    <input type="text" id="titre" name="titre" class="form-control" value="Correction Bug Login">
+                    <input type="text" id="titre" name="titre" class="form-control" placeholder="Ex: Erreur lors du paiement...">
                     <div id="titre_error" class="error-text titanic">Veuillez entrer un sujet pour la demande.</div>
                 </div>
 
@@ -53,63 +71,50 @@
                     <div class="form-group">
                         <label for="projet">Projet concerné <span class="text-required">*</span></label>
                         <select id="projet" name="projet" class="form-control">
-                            <option value="" disabled>Veuillez choisir un site</option>
+                            <option value="" disabled selected>-- Choisir un projet --</option>
                             <option value="ecommerce">Site E-Commerce Bio</option>
                             <option value="crm">CRM Interne</option>
                             <option value="vitrine">Site Vitrine</option>
                         </select>
-                        <div id="projet_error" class="error-text titanic">Veuillez sélectionner un projet valide.</div>
+                        <div id="projet_error" class="error-text titanic">Veuillez sélectionner un projet concerné.</div>
                     </div>
 
                     <div class="form-group">
-                        <label for="statut">Statut actuel</label>
-                        <select id="statut" name="statut" class="form-control">
-                            <option value="new">Nouveau</option>
-                            <option value="wip" selected>En cours de traitement</option>
-                            <option value="review">En revue</option>
-                            <option value="done">Terminé</option>
+                        <label for="type">Type de demande</label>
+                        <select id="type" name="type" class="form-control">
+                            <option value="bug">Correction de Bug</option>
+                            <option value="feature">Nouvelle fonctionnalité</option>
+                            <option value="support">Support / Question</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="type">Type de demande</label>
-                        <select id="type" name="type" class="form-control">
-                            <option value="bug" selected>Correction de Bug</option>
-                            <option value="feature">Nouvelle fonctionnalité</option>
-                            <option value="support">Support / Question</option>
+                        <label for="priorite">Priorité</label>
+                        <select id="priorite" name="priorite" class="form-control">
+                            <option value="low">Basse</option>
+                            <option value="medium" selected>Moyenne</option>
+                            <option value="high">Haute</option>
+                            <option value="critical">Critique</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="priorite">Priorité</label>
-                        <select id="priorite" name="priorite" class="form-control">
-                            <option value="low">Basse</option>
-                            <option value="medium">Moyenne</option>
-                            <option value="high" selected>Haute</option>
-                            <option value="critical">Critique</option>
-                        </select>
+                        <label for="delai">Date souhaitée (Optionnel)</label>
+                        <input type="date" id="delai" name="delai" class="form-control">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Description détaillée <span class="text-required">*</span></label>
-                    <textarea id="description" name="description" class="form-control">Bonjour,
-
-                        Sur la version mobile (iPhone 14), le bouton de connexion se chevauche avec le logo. Il est impossible de cliquer dessus.
-                        Le problème semble venir du CSS sur les écrans < 400px.
-
-                        Merci de corriger rapidement avant la mise en prod.
-                    </textarea>
+                    <textarea id="description" name="description" class="form-control" placeholder="Décrivez le problème ou le besoin en détail..."></textarea>
                     <div id="description_error" class="error-text titanic">Veuillez entrer une description détaillée.</div>
                 </div>
 
                 <div class="form-actions">
-                    <button type="button" class="btn-supr">Supprimer</button>
-                    
                     <a href="tickets.html" class="btn-cancel">Annuler</a>
-                    <button type="submit" class="btn-submit">Enregistrer</button>
+                    <button type="submit" class="btn-submit">Créer le ticket</button>
                 </div>
 
             </form>
@@ -117,6 +122,6 @@
 
     </div>
 
-    <script src="./../javascript/modif_ticket.js"></script>
+    <script src="./../javascript/create_ticket.js"></script>
 </body>
 </html>

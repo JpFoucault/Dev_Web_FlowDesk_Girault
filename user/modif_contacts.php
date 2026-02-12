@@ -1,3 +1,14 @@
+<?php
+require_once './../index.php'; 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $contactModifie = new Contact($_POST);
+
+    header('Location: contacts.html?edit=success');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
