@@ -1209,3 +1209,127 @@ input:checked + .slider:before {
 .required_password{
     font-size: 10px;
 }
+
+.form-section {
+    margin-bottom: 35px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #334155;
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+}
+
+.form-section-title {
+    font-size: 16px;
+    color: #f8fafc;
+    margin: 0 0 20px 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #818cf8;
+}
+
+.tech-input-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.tech-input-wrapper .form-control {
+    flex: 1;
+}
+
+.btn-add-tech {
+    background-color: #334155;
+    color: #e2e8f0;
+    padding: 12px 20px;
+    border: 1px solid #475569;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.btn-add-tech:hover {
+    background-color: #4F46E5;
+    border-color: #4F46E5;
+    color: white;
+}
+
+.tech-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    min-height: 20px;
+}
+
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #334155;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #e2e8f0;
+    border: 1px solid #475569;
+}
+
+.tech-remove {
+    background: none;
+    border: none;
+    color: #ef4444;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 4px;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.tech-remove:hover {
+    color: #dc2626;
+}
+
+.collab-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.collab-option:hover {
+    background-color: #1e293b;
+}
+
+.collab-option input[type="checkbox"] {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: #4F46E5;
+}
+
+.collab-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.collab-name {
+    font-weight: 600;
+    color: #f8fafc;
+    font-size: 14px;
+}
+
+.collab-role {
+    font-size: 12px;
+    color: #94a3b8;
+}

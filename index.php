@@ -50,7 +50,6 @@ class Projet {
         $this->debut = $data['date_debut'] ?? '';
         $this->fin = !empty($data['date_fin']) ? $data['date_fin'] : null;
         $this->budget = (float)($data['budget'] ?? 0);
-        // Récupère les cases cochées pour les collaborateurs
         $this->collaborateurs = $data['collabs'] ?? []; 
     }
 }
