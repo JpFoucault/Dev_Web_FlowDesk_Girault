@@ -53,6 +53,6 @@ document.getElementById('submitform').addEventListener('submit', function(e) {
     }
     
     if (isValid) {
-        window.location.href = 'project.html';
+        window.location.href = 'project.php';
     }
 });

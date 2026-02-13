@@ -1,18 +1,26 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ./../login/login.php");
+    exit();
+}
+
 require_once './../index.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action']) && $_POST['action'] === 'delete') {
-        header('Location: project.html?delete=ok');
+        header('Location: project.php?delete=ok');
         exit();
     }
 
     $projetModifie = new Projet($_POST);
     
-    header('Location: project.html?edit=success');
+    header('Location: project.php?edit=success');
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,18 +35,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <header class="main-header">
         <div class="logo-container">
-            <a href="dashboard.html"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
+            <a href="dashboard.php"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
         </div>
 
         <nav class="main-nav">
             <ul>
-                <li><a href="dashboard.html">Tableau de bord</a></li>
-                <li><a href="project.html" class="active">Mes Projets</a></li>
-                <li><a href="tickets.html">Tickets</a></li>
-                <li><a href="bills.html">Facturation</a></li>
-                <li><a href="documents.html">Documents</a></li>
-                <li><a href="contacts.html">Contacts</a></li>
-                <li><a href="settings.html">Settings</a></li>
+                <li><a href="dashboard.php">Tableau de bord</a></li>
+                <li><a href="project.php" class="active">Mes Projets</a></li>
+                <li><a href="tickets.php">Tickets</a></li>
+                <li><a href="bills.php">Facturation</a></li>
+                <li><a href="documents.php">Documents</a></li>
+                <li><a href="contacts.php">Contacts</a></li>
+                <li><a href="settings.php">Settings</a></li>
             </ul>
         </nav>
 
@@ -212,7 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="form-actions">
-                    <a href="project.html" class="btn-cancel">Annuler</a>
+                    <a href="project.php" class="btn-cancel">Annuler</a>
                     <button type="submit" class="btn-submit">Modifier le projet</button>
                 </div>
 

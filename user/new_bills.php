@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Vérification de sécurité : Si l'utilisateur n'est pas connecté, on le renvoie au login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ./../login/login.php");
+    exit();
+}
+
 require_once './../index.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -15,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         move_uploaded_file($_FILES['bill_file']['tmp_name'], $destination);
     }
 
-    header('Location: bills.html?success=1');
+    header('Location: bills.php?success=1');
     exit();
 }
 ?>
@@ -35,18 +43,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <header class="main-header">
         <div class="logo-container">
-            <a href="dashboard.html"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
+            <a href="dashboard.php"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
         </div>
 
         <nav class="main-nav">
             <ul>
-                <li><a href="dashboard.html">Tableau de bord</a></li>
-                <li><a href="project.html">Mes Projets</a></li>
-                <li><a href="tickets.html">Tickets</a></li>
-                <li><a href="bills.html" class="active">Facturation</a></li>
-                <li><a href="documents.html">Documents</a></li>
-                <li><a href="contacts.html">Contacts</a></li>
-                <li><a href="settings.html">Settings</a></li>
+                <li><a href="dashboard.php">Tableau de bord</a></li>
+                <li><a href="project.php">Mes Projets</a></li>
+                <li><a href="tickets.php">Tickets</a></li>
+                <li><a href="bills.php" class="active">Facturation</a></li>
+                <li><a href="documents.php">Documents</a></li>
+                <li><a href="contacts.php">Contacts</a></li>
+                <li><a href="settings.php">Settings</a></li>
             </ul>
         </nav>
 
@@ -62,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p>Remplissez les informations financières et joignez le document PDF.</p>
             </div>
 
-            <form id="new_bill_form" action="bills.html" method="POST">
+            <form id="new_bill_form" action="bills.php" method="POST">
                 
                 <div class="form-row">
                     <div class="form-group">
@@ -121,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="form-actions">
-                    <a href="bills.html" class="btn-cancel">Annuler</a>
+                    <a href="bills.php" class="btn-cancel">Annuler</a>
                     <button type="submit" class="btn-submit">Enregistrer la facture</button>
                 </div>
 

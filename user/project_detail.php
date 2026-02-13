@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Vérification de sécurité : Si l'utilisateur n'est pas connecté, on le renvoie au login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ./../login/login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,18 +21,18 @@
 <body>
     <header class="main-header">
         <div class="logo-container">
-            <a href="dashboard.html"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
+            <a href="dashboard.php"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
         </div>
 
         <nav class="main-nav">
             <ul>
-                <li><a href="dashboard.html">Tableau de bord</a></li>
-                <li><a href="project.html" class="active">Mes Projets</a></li>
-                <li><a href="tickets.html">Tickets</a></li>
-                <li><a href="bills.html">Facturation</a></li>
-                <li><a href="documents.html">Documents</a></li>
-                <li><a href="contacts.html">Contacts</a></li>
-                <li><a href="settings.html">Settings</a></li>
+                <li><a href="dashboard.php">Tableau de bord</a></li>
+                <li><a href="project.php" class="active">Mes Projets</a></li>
+                <li><a href="tickets.php">Tickets</a></li>
+                <li><a href="bills.php">Facturation</a></li>
+                <li><a href="documents.php">Documents</a></li>
+                <li><a href="contacts.php">Contacts</a></li>
+                <li><a href="settings.php">Settings</a></li>
             </ul>
         </nav>
 
@@ -35,7 +45,7 @@
     <div class="content">
         <div class="page-actions">
             <div>
-                <a href="project.html" class="back-link">← Retour aux projets</a>
+                <a href="project.php" class="back-link">← Retour aux projets</a>
                 <h1>Site E-Commerce Bio</h1>
             </div>
             <a href="modif_project.php">

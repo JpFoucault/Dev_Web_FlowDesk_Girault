@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Vérification de sécurité : Si l'utilisateur n'est pas connecté, on le renvoie au login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ./../login/login.php");
+    exit();
+}
+
 
 require_once './../index.php';
 
@@ -7,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nouveauTicket = new Ticket($_POST);
 
     if ($nouveauTicket->isValid()) {
-        header('Location: tickets.html'); 
+        header('Location: tickets.php'); 
         exit();
     } else {
         echo "Erreur : Certains champs obligatoires sont vides.";
@@ -35,13 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <nav class="main-nav">
             <ul>
-                <li><a href="dashboard.html">Tableau de bord</a></li>
-                <li><a href="project.html">Mes Projets</a></li>
-                <li><a href="tickets.html" class="active">Tickets</a></li>
-                <li><a href="bills.html">Facturation</a></li>
-                <li><a href="documents.html">Documents</a></li>
-                <li><a href="contacts.html">Contacts</a></li>
-                <li><a href="settings.html">Settings</a></li>
+                <li><a href="dashboard.php">Tableau de bord</a></li>
+                <li><a href="project.php">Mes Projets</a></li>
+                <li><a href="tickets.php" class="active">Tickets</a></li>
+                <li><a href="bills.php">Facturation</a></li>
+                <li><a href="documents.php">Documents</a></li>
+                <li><a href="contacts.php">Contacts</a></li>
+                <li><a href="settings.php">Settings</a></li>
             </ul>
         </nav>
 
@@ -113,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="form-actions">
-                    <a href="tickets.html" class="btn-cancel">Annuler</a>
+                    <a href="tickets.php" class="btn-cancel">Annuler</a>
                     <button type="submit" class="btn-submit">Créer le ticket</button>
                 </div>
 

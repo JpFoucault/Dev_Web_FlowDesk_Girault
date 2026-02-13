@@ -1,9 +1,18 @@
 <?php
+session_start();
+
+// Vérification de sécurité : Si l'utilisateur n'est pas connecté, on le renvoie au login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ./../login/login.php");
+    exit();
+}
+
 require_once './../index.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nouveauProjet = new Projet($_POST);
-    header('Location: project.html');
+    
+    header('Location: project.php');
     exit();
 }
 ?>
@@ -13,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nouveau Projet - FlowDesk</title>
+    <title>FlowDesk</title>
     <link rel="stylesheet" href="./../styles.css" />
     <link rel="icon" type="image/png" sizes="32x32" href="./../assets/Onlylogo.png">
 </head>
@@ -22,18 +31,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <header class="main-header">
         <div class="logo-container">
-            <a href="dashboard.html"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
+            <a href="dashboard.php"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
         </div>
 
         <nav class="main-nav">
             <ul>
-                <li><a href="dashboard.html">Tableau de bord</a></li>
-                <li><a href="project.html" class="active">Mes Projets</a></li>
-                <li><a href="tickets.html">Tickets</a></li>
-                <li><a href="bills.html">Facturation</a></li>
-                <li><a href="documents.html">Documents</a></li>
-                <li><a href="contacts.html">Contacts</a></li>
-                <li><a href="settings.html">Settings</a></li>
+                <li><a href="dashboard.php">Tableau de bord</a></li>
+                <li><a href="project.php" class="active">Mes Projets</a></li>
+                <li><a href="tickets.php">Tickets</a></li>
+                <li><a href="bills.php">Facturation</a></li>
+                <li><a href="documents.php">Documents</a></li>
+                <li><a href="contacts.php">Contacts</a></li>
+                <li><a href="settings.php">Settings</a></li>
             </ul>
         </nav>
 
@@ -51,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p>Définissez le cadre, le client, le budget et l'équipe pour ce nouveau projet.</p>
             </div>
 
-            <form id="submitform" action="project.html" method="POST">
+            <form id="submitform" action="project.php" method="POST">
 
                 <div class="form-section">
                     <h3 class="form-section-title">Informations générales</h3>
@@ -207,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="form-actions">
-                    <a href="project.html" class="btn-cancel">Annuler</a>
+                    <a href="project.php" class="btn-cancel">Annuler</a>
                     <button type="submit" class="btn-submit">Créer le projet</button>
                 </div>
 

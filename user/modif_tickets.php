@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Vérification de sécurité : Si l'utilisateur n'est pas connecté, on le renvoie au login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ./../login/login.php");
+    exit();
+}
+
 require_once './../index.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -6,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ticketModifie = new Ticket($_POST);
 
     if ($ticketModifie->isValid()) {
-        header('Location: tickets.html?edit=success');
+        header('Location: tickets.php?edit=success');
         exit();
     } else {
         $erreur = "Veuillez remplir tous les champs obligatoires.";
@@ -28,18 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <header class="main-header">
         <div class="logo-container">
-            <a href="dashboard.html"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
+            <a href="dashboard.php"><img src="./../assets/FlowDesklogo.png" alt="Logo FlowDesk" class="logo-img"></a>
         </div>
 
         <nav class="main-nav">
             <ul>
-                <li><a href="dashboard.html">Tableau de bord</a></li>
-                <li><a href="project.html">Mes Projets</a></li>
-                <li><a href="tickets.html" class="active">Tickets</a></li>
-                <li><a href="bills.html">Facturation</a></li>
-                <li><a href="documents.html">Documents</a></li>
-                <li><a href="contacts.html">Contacts</a></li>
-                <li><a href="settings.html">Settings</a></li>
+                <li><a href="dashboard.php">Tableau de bord</a></li>
+                <li><a href="project.php">Mes Projets</a></li>
+                <li><a href="tickets.php" class="active">Tickets</a></li>
+                <li><a href="bills.php">Facturation</a></li>
+                <li><a href="documents.php">Documents</a></li>
+                <li><a href="contacts.php">Contacts</a></li>
+                <li><a href="settings.php">Settings</a></li>
             </ul>
         </nav>
 
@@ -57,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p>Mettez à jour le statut, la priorité ou la description de la demande.</p>
             </div>
 
-            <form id="modif_ticket_form" action="tickets.html" method="POST">
+            <form id="modif_ticket_form" action="tickets.php" method="POST">
                 
                 <div class="form-group">
                     <label for="titre">Sujet de la demande <span class="text-required">*</span></label>
@@ -124,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-actions">
                     <button type="button" class="btn-supr">Supprimer</button>
                     
-                    <a href="tickets.html" class="btn-cancel">Annuler</a>
+                    <a href="tickets.php" class="btn-cancel">Annuler</a>
                     <button type="submit" class="btn-submit">Enregistrer</button>
                 </div>
 

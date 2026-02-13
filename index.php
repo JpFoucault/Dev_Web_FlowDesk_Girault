@@ -1,5 +1,78 @@
 <?php
 
+function redirect_with_message(string $location, string $type, string $message): void {
+    $separator = strpos($location, '?') === false ? '?' : '&';
+    header("Location: {$location}{$separator}{$type}=" . urlencode($message));
+    exit;
+}
+
+if (realpath($_SERVER['SCRIPT_FILENAME'] ?? '') === __FILE__) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $action = $_POST['action'] ?? '';
+
+        if ($action === 'login') {
+            $email = trim($_POST['username'] ?? '');
+            $password = trim($_POST['password'] ?? '');
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                redirect_with_message('login/login.php', 'error', 'Email invalide.');
+            }
+
+            if ($password === '') {
+                redirect_with_message('login/login.php', 'error', 'Mot de passe requis.');
+            }
+
+            header('Location: user/dashboard.php');
+            exit;
+        }
+
+        if ($action === 'create_account') {
+            $prenom = trim($_POST['prenom'] ?? '');
+            $nom = trim($_POST['nom'] ?? '');
+            $email = trim($_POST['email'] ?? '');
+            $password = $_POST['password'] ?? '';
+            $role = trim($_POST['role'] ?? '');
+            $firm = trim($_POST['firm_id'] ?? '');
+
+            if ($prenom === '' || $nom === '' || $role === '' || $firm === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                redirect_with_message('login/create_account.php', 'error', 'Formulaire incomplet ou invalide.');
+            }
+
+            if (!preg_match('/^(?=.*[A-Z])(?=.*\d).{7,}$/', $password)) {
+                redirect_with_message('login/create_account.php', 'error', 'Mot de passe non conforme.');
+            }
+
+            redirect_with_message('login/login.php', 'success', 'Compte cree avec succes.');
+        }
+
+        if ($action === 'forget_password') {
+            $email = trim($_POST['username'] ?? '');
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                redirect_with_message('login/forget_password.php', 'error', 'Email invalide.');
+            }
+
+            redirect_with_message('login/confirm_email.php', 'success', 'Code envoye par email.');
+        }
+
+        if ($action === 'confirm_email') {
+            $code = trim($_POST['code'] ?? '');
+
+            if ($code === '' || !preg_match('/^\d{4,8}$/', $code)) {
+                redirect_with_message('login/confirm_email.php', 'error', 'Code invalide.');
+            }
+
+            header('Location: user/dashboard.php');
+            exit;
+        }
+
+        redirect_with_message('login/login.php', 'error', 'Action inconnue.');
+    }
+
+    header('Location: login/login.php');
+    exit;
+}
+
 // --- CLASSE TICKET (create_tickets.php) ---
 class Ticket {
     public string $titre;
@@ -106,3 +179,70 @@ class Document {
         $this->notes = $data['notes'] ?? null;
     }
 }
+
+
+// --- CLASSE USER ---
+class User {
+    public string $id;
+    public string $prenom;
+    public string $nom;
+    public string $email;
+    private string $passwordHash;
+    public string $role;
+    public string $firm_id;
+    public string $created_at;
+
+    public function __construct(array $data) {
+        $this->id = $data['id'] ?? uniqid('user_');
+        $this->prenom = $this->sanitize($data['prenom'] ?? '');
+        $this->nom = $this->sanitize($data['nom'] ?? '');
+        $this->email = filter_var($data['email'] ?? '', FILTER_SANITIZE_EMAIL);
+        $this->role = $data['role'] ?? 'Collaborateur (Interne)';
+        $this->firm_id = $data['firm_id'] ?? '';
+        $this->created_at = date('Y-m-d H:i:s');
+        
+        if (!empty($data['password'])) {
+            $this->setPassword($data['password']);
+        }
+    }
+
+    private function sanitize($input) {
+        return htmlspecialchars(strip_tags(trim($input)));
+    }
+
+    public function setPassword($password) {
+        $this->passwordHash = password_hash($password, PASSWORD_BCRYPT);
+    }
+
+    public function verifyPassword($password): bool {
+        return password_verify($password, $this->passwordHash);
+    }
+
+    public static function validate(array $data): array {
+        $errors = [];
+
+        if (empty($data['prenom']) || strlen(trim($data['prenom'])) < 2) {
+            $errors['prenom'] = "Veuillez entrer un prénom valide (min 2 caractères).";
+        }
+
+        if (empty($data['nom']) || strlen(trim($data['nom'])) < 2) {
+            $errors['nom'] = "Veuillez entrer un nom valide (min 2 caractères).";
+        }
+
+        if (empty($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = "Veuillez entrer un email professionnel valide.";
+        }
+
+        $pwd = $data['password'] ?? '';
+        if (strlen($pwd) < 7 || !preg_match('/[A-Z]/', $pwd) || !preg_match('/[0-9]/', $pwd)) {
+            $errors['password'] = "Le mot de passe doit contenir 7 caractères, 1 majuscule et 1 chiffre.";
+        }
+
+        if (empty($data['firm_id'])) {
+            $errors['firm_id'] = "Veuillez sélectionner une entreprise.";
+        }
+
+        return $errors;
+    }
+}
+?>
